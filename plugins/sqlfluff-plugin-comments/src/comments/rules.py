@@ -74,7 +74,7 @@ class Rule_Comments_L001(BaseRule):
         """We should use comments before CREATE TABLE."""
         if context.segment.is_type("create_table_statement"):
             seg = context.segment
-            for seg in context.raw_stack:
+            for seg in context.raw_stack[-2:]:
                 if seg.name in ['inline_comment', 'block_comment']:
                     return None
 

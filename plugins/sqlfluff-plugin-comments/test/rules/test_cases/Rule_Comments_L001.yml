@@ -20,6 +20,18 @@ comment_used_external:
     stored as orc
     location 'hdfs://path';
 
+comment_used_with_newline:
+  fail_str: |
+    -- Example comment followed by newline before CREATE statement (wrong)
+
+    create external table if not exists foo (
+        col1 string,
+        col2 int,
+        col3 decimal
+    )
+    stored as orc
+    location 'hdfs://path';
+
 no_comment_used:
   fail_str: |
     create table foo (
