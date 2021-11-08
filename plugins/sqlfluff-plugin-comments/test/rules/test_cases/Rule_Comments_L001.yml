@@ -1,0 +1,39 @@
+rule: Comments_L001
+
+comment_used:
+  pass_str: |
+    -- Example comment
+    create table foo (
+        col1 string,
+        col2 int,
+        col3 decimal
+    );
+
+comment_used_external:
+  pass_str: |
+    -- Example comment
+    create external table if not exists foo (
+        col1 string,
+        col2 int,
+        col3 decimal
+    )
+    stored as orc
+    location 'hdfs://path';
+
+no_comment_used:
+  fail_str: |
+    create table foo (
+        col1 string,
+        col2 int,
+        col3 decimal
+    );
+
+no_comment_used_external:
+  fail_str: |
+    create external table if not exists foo (
+        col1 string,
+        col2 int,
+        col3 decimal
+    )
+    stored as orc
+    location 'hdfs://path';
